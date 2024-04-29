@@ -1,4 +1,4 @@
-import { FiUser, FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiUser } from 'react-icons/fi';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -15,7 +15,7 @@ export function Header() {
                 <User>
                     <span>Olá, <strong>{user.name}</strong></span>
                     <small>
-                        <FiUser /> Perfil do usuário
+                        <FiUser /> Perfil : {user.role}
                     </small>
                 </User>
             </aside>
