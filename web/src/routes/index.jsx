@@ -9,12 +9,21 @@ import { AuthRoutes } from './auth.routes';
 import { CustomerRoutes } from './customer.routes';
 import { SaleRoutes } from './sale.routes';
 
-export function Routes() {
-  const { user } = useAuth();
+import { useEffect } from 'react';
+import { api } from '../services/api';
 
-  // useEffect(() => {
-  //   api.get('/users/validated').catch((error) => console.log(error))
-  // }, [])
+export function Routes() {
+  const { user, signOut } = useAuth();
+
+  useEffect(() => {
+    api
+      .get('/users/validated')
+      .catch((error) => {
+        if(error.response?.status === 401) {
+          signOut()
+        }
+      })
+  }, [])
 
   function AccessRoute(){
     switch(user.role){
